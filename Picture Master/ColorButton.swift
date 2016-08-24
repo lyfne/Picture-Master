@@ -11,12 +11,19 @@ import QuartzCore
 
 class ColorButton: ResizeButton {
 
+    enum MoveDirection {
+        case DirectionX
+        case DirectionY
+        case DirectionXY
+    }
+    
     var shapeLayer: CAShapeLayer = CAShapeLayer()
-    var shapePath: UIBezierPath = UIBezierPath()
     var fillColor: CGColor = UIColor.redColor().CGColor
     var strokeColor: CGColor = UIColor.whiteColor().CGColor
-    var borderWidth: CGFloat = 2
+    var borderWidth: CGFloat = 0
+    var buttonSize: CGFloat = BUTTON_SIZE_INIT
     var bIsSelected: Bool = false
+    var direction: MoveDirection = .DirectionX
 
     override class func layerClass() -> AnyClass {
         return CAShapeLayer.self
@@ -35,64 +42,54 @@ class ColorButton: ResizeButton {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         
-        let endShape = UIBezierPath(arcCenter: CGPoint(x: buttonSizeInit + buttonSizeOffset, y: buttonSizeInit + buttonSizeOffset), radius: buttonSizeInit + buttonSizeOffset - 2, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
-        
-        shapePath.applyTransform(CGAffineTransformMakeTranslation(buttonSizeOffset, buttonSizeOffset))
-        shapeLayer.path = shapePath.CGPath
+        let startShape = UIBezierPath(arcCenter: CGPoint(x: buttonSize, y: buttonSize), radius: buttonSize - BUTTON_SIZE_CHANGE_VALUE - 2, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
+        let endShape = UIBezierPath(arcCenter: CGPoint(x: buttonSize, y: buttonSize), radius: buttonSize - 2, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
         
         let animation = CABasicAnimation(keyPath: "path")
-        animation.fromValue = shapePath.CGPath
+        animation.fromValue = startShape.CGPath
         animation.toValue = endShape.CGPath
-        animation.duration = 0.1 // duration is 1 sec
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.duration = 0.1
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         animation.fillMode = kCAFillModeBoth
         animation.removedOnCompletion = false
         shapeLayer.addAnimation(animation, forKey: animation.keyPath)
-        shapePath = endShape
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
         
-        let endShape = UIBezierPath(arcCenter: CGPoint(x: buttonSizeInit, y: buttonSizeInit), radius: buttonSizeInit - 2, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
-        
-        shapePath.applyTransform(CGAffineTransformMakeTranslation(-buttonSizeOffset, -buttonSizeOffset))
-        shapeLayer.path = shapePath.CGPath
+        self.toolBarVC.resizeView()
+        self.toolBarVC.view.layoutSubviews()
+        self.toolBarVC.selectColor(self)
+       
+        let startShape = UIBezierPath(arcCenter: CGPoint(x: buttonSize, y: buttonSize), radius: buttonSize - 2, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
+        let endShape = UIBezierPath(arcCenter: CGPoint(x: buttonSize, y: buttonSize), radius: buttonSize - BUTTON_SIZE_CHANGE_VALUE - 2, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
         
         let animation = CABasicAnimation(keyPath: "path")
-        animation.delegate = self
-        animation.fromValue = shapePath.CGPath
+        animation.fromValue = startShape.CGPath
         animation.toValue = endShape.CGPath
-        animation.duration = 0.2 // duration is 1 sec
+        animation.duration = 0.2
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         animation.fillMode = kCAFillModeBoth
         animation.removedOnCompletion = false
         shapeLayer.addAnimation(animation, forKey: animation.keyPath)
-        shapePath = endShape
     }
     
     //MARK: - Private Function
     
     func refresh() {
-        self.performSelectorOnMainThread(#selector(setNeedsDisplay), withObject: nil, waitUntilDone: false)
-    }
-    
-    func setup() {
-        shapeLayer = self.layer as! CAShapeLayer
-        
-        shapePath.addArcWithCenter(CGPoint(x: buttonSizeInit, y: buttonSizeInit), radius: buttonSizeInit - 2, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
+         let startShape = UIBezierPath(arcCenter: CGPoint(x: buttonSize, y: buttonSize), radius: buttonSize - BUTTON_SIZE_CHANGE_VALUE - 2, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
         shapeLayer.strokeColor = strokeColor
         shapeLayer.fillColor = fillColor
         shapeLayer.lineWidth = borderWidth
         shapeLayer.lineJoin = kCALineJoinRound
         shapeLayer.lineCap = kCALineCapRound
-        shapeLayer.path = shapePath.CGPath
+        shapeLayer.path = startShape.CGPath
     }
     
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-        self.toolBarVC.resizeView()
-        self.toolBarVC.view.layoutSubviews()
-        self.toolBarVC.selectColor()
+    func setup() {
+        shapeLayer = self.layer as! CAShapeLayer
+        
+        refresh()
     }
-
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fc4-k7-WGE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xqj-Ch-IoT">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -187,13 +187,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="colorButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxR-0P-vJV" customClass="ColorButton" customModule="Picture_Master" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="colorButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxR-0P-vJV" customClass="ColorButton" customModule="Picture_Master" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="6kn-6I-3Z5"/>
+                                    <constraint firstAttribute="width" constant="42" id="OCj-i8-xsz"/>
+                                </constraints>
                                 <state key="normal">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="cxR-0P-vJV" firstAttribute="centerY" secondItem="lvd-L7-A2A" secondAttribute="centerY" placeholder="YES" id="Hvh-Le-7AD"/>
+                            <constraint firstItem="cxR-0P-vJV" firstAttribute="centerX" secondItem="lvd-L7-A2A" secondAttribute="centerX" placeholder="YES" id="QaL-Kq-0yo"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="42" height="42"/>

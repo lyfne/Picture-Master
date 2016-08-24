@@ -20,6 +20,7 @@
 		1C2E359E1D558855001A4E5D /* ToolBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E359D1D558855001A4E5D /* ToolBarViewController.swift */; };
 		1C7325D61D570A9F00CEDAA4 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7325D41D570A9F00CEDAA4 /* ColorButton.swift */; };
 		1C7325D71D570A9F00CEDAA4 /* ResizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7325D51D570A9F00CEDAA4 /* ResizeButton.swift */; };
+		1CA48D081D6BFB750057A507 /* GlobalConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA48D071D6BFB750057A507 /* GlobalConst.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		1C2E359D1D558855001A4E5D /* ToolBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarViewController.swift; sourceTree = "<group>"; };
 		1C7325D41D570A9F00CEDAA4 /* ColorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		1C7325D51D570A9F00CEDAA4 /* ResizeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeButton.swift; sourceTree = "<group>"; };
+		1CA48D071D6BFB750057A507 /* GlobalConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConst.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				1C20F9171D533A3800C27BE6 /* Info.plist */,
 				1C20F9391D545F3900C27BE6 /* EditViewController.swift */,
 				1C2E359D1D558855001A4E5D /* ToolBarViewController.swift */,
+				1CA48D071D6BFB750057A507 /* GlobalConst.swift */,
 			);
 			path = "Picture Master";
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				1C7325D61D570A9F00CEDAA4 /* ColorButton.swift in Sources */,
 				1C20F90C1D533A3800C27BE6 /* AppDelegate.swift in Sources */,
 				1C20F93A1D545F3900C27BE6 /* EditViewController.swift in Sources */,
+				1CA48D081D6BFB750057A507 /* GlobalConst.swift in Sources */,
 				1C7325D71D570A9F00CEDAA4 /* ResizeButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -47,7 +47,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate {
         
         centerScrollViewContents()
         
-        toolBarVC.view.frame = CGRectMake(20, self.view.frame.size.height - 20 - 42, 42, 42)
+        toolBarVC.view.frame = CGRectMake(BUTTON_VIEW_MARGIN, self.view.frame.size.height - BUTTON_VIEW_MARGIN - BUTTON_SIZE_INIT * 2, BUTTON_SIZE_INIT * 2, BUTTON_SIZE_INIT * 2)
         
         self.view.addSubview(toolBarVC.view)
         self.view.bringSubviewToFront(toolBarVC.view)
